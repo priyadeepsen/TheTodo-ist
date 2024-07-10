@@ -43,4 +43,20 @@ To get a local copy up and running, follow these simple steps:
 1. Clone the repo
    ```sh
    git clone https://github.com/priyadeepsen/TheTodo-ist.git
+
+2)Install NPM packages
+  
+  npm install
+
+3)Start Development Server
+
+  npm run dev
+
+📧 Contact
+
+Priyadeep Sen
+
+Email: priyadeepsen990@gmail.com
+
+ProjectLink: https://github.com/priyadeepsen/TheTodo-ist
    
