@@ -11,9 +11,10 @@
 :root {
   --primary-color: #1b2e35;
   --secondry-color: #8e5093;
-  --white-color: #fff;
+  --white-color: white;
   --gray-color: #ffffffa1;
   --black-color: #0a0a0a;
+  --transition-speed: 0.3s;
 }
 
 body {
@@ -22,9 +23,20 @@ body {
   height: 100vh;
   background: url("Images/bg-1.jpg") no-repeat center;
   background-size: cover;
+  background-color: #233c45;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn var(--transition-speed) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .App {
@@ -35,16 +47,32 @@ h1 {
   color: var(--white-color);
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
+  animation: slideDown var(--transition-speed) ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .TodoWrapper {
   background: var(--primary-color); 
   padding: 2rem;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 1.0714rem rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 1.0714rem rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
   max-height: 30rem;
   overflow-y: auto;
+  transition: box-shadow var(--transition-speed);
+}
+
+.TodoWrapper:hover {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 }
 
 .TodoForm {
@@ -61,18 +89,31 @@ h1 {
   margin-bottom: 2rem;
   width: 300px;
   color: var(--white-color);
+  border-radius: 5px;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .todo-input::placeholder {
   color: var(--gray-color);
 }
 
+.todo-input:focus {
+  border-color: var(--white-color);
+  box-shadow: 0 0 5px var(--secondry-color);
+}
+
 .todo-btn {
   background: var(--secondry-color);
   color: var(--white-color);
   border: none;
-  padding: 0.55rem;
+  padding: 0.55rem 1rem;
   cursor: pointer;
+  border-radius: 5px;
+  transition: background-color var(--transition-speed);
+}
+
+.todo-btn:hover {
+  background: darken(var(--secondry-color), 10%);
 }
 
 .Todo {
@@ -84,6 +125,11 @@ h1 {
   padding: 0.75rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
+  transition: transform var(--transition-speed);
+}
+
+.Todo:hover {
+  transform: scale(1.02);
 }
 
 .fa-trash {
@@ -93,15 +139,33 @@ h1 {
 .incompleted {
   color: var(--white-color);
   cursor: pointer;
+  transition: color var(--transition-speed), text-decoration var(--transition-speed);
+}
+
+.incompleted:hover {
+  color: var(--gray-color);
+  text-decoration: underline;
 }
 
 .completed {
   color: var(--gray-color);
   text-decoration: line-through;
   cursor: pointer;
+  transition: color var(--transition-speed), text-decoration var(--transition-speed);
+}
+
+.completed:hover {
+  color: var(--white-color);
+  text-decoration: none;
 }
 
 .edit-icon,
 .delete-icon {
   cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+  color: var(--gray-color);
 }
