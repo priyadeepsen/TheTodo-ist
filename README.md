@@ -14,7 +14,7 @@ Welcome to the MERN Todo List Web App! This project is a simple yet powerful tod
 
 ## 📸 Screenshots
 
-![Todo List Screenshot](path-to-your-screenshot.png)
+![Todo List Screenshot](todo-ist/src/image.png)
 
 ## 🛠️ Technologies Used
 
