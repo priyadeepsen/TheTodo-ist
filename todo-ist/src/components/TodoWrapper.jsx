@@ -16,9 +16,28 @@ function TodoWrapper() {
   }
 
   //Delete todo
-  const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id != id))
+  const deleteTodo = (id) =>
+    setTodos(
+      todos.filter(
+        (todo) => todo.id != id)
+    )
+
+  //TOGGLE complete todo
+  const toggleComplete = (id) => {
+    setTodos(todos)(
+      todos.map((todo) => todo.id === id ? { ...todo, completed: !todo.completed } : todo)
+    )
+  }
+
+  //edit todo
+  const editTodo = (id) => {
+    setTodos(todos)(
+      todos.map
+    )
+  }
 
   console.log("todos", todos);
+
   return (
     <div className='Todowrapper'>
       <h1>web dev task!</h1>
@@ -31,8 +50,8 @@ function TodoWrapper() {
           key={todo.id}
           task={todo}
           deleteTodo={deleteTodo}
-        // editTodo = {editTodo}
-        // toggleComplete = {toggleComplete}
+          editTodo = {editTodo}
+          toggleComplete={toggleComplete}
         />
       )
       )}
