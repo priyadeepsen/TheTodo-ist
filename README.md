@@ -1,4 +1,4 @@
-# 📝 MERN Todo List Web App
+# 📝 MERN Todo-ist Web App
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Stack-blue)
 
