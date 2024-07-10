@@ -1,4 +1,4 @@
-# 📝 MERN Todo List Web App
+# 📝 MERN Todo-ist Web App
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Stack-blue)
 
@@ -14,7 +14,7 @@ Welcome to the MERN Todo List Web App! This project is a simple yet powerful tod
 
 ## 📸 Screenshots
 
-![Todo List Screenshot](path-to-your-screenshot.png)
+![Todo List Screenshot](todo-ist/src/image.png)
 
 ## 🛠️ Technologies Used
 
@@ -43,4 +43,20 @@ To get a local copy up and running, follow these simple steps:
 1. Clone the repo
    ```sh
    git clone https://github.com/priyadeepsen/TheTodo-ist.git
+
+2)Install NPM packages
+  
+  npm install
+
+3)Start Development Server
+
+  npm run dev
+
+📧 Contact
+
+Priyadeep Sen
+
+Email: priyadeepsen990@gmail.com
+
+ProjectLink: https://github.com/priyadeepsen/TheTodo-ist
    
