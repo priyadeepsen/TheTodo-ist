@@ -1,65 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import TodoForm from './TodoForm';
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import EditTodoForm from './EditTodoForm';
-import Todo from './Todo'; 
-
+import Todo from './Todo';
 
 function TodoWrapper() {
-    const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
 
-    // Add Todo
-    const addTodo = (todo) => {
-        setTodos([
-            ...todos, {id:uuidv4(), task:todo, completed:false, isEditing:false},
-        ]);
-    }
+  const updateTodos = (updateFn) => {
+    setTodos((prevTodos) => prevTodos.map(updateFn));
+  };
 
-    // Delete Todo
-    const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
+  const addTodo = useCallback((todo) => {
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { id: uuidv4(), task: todo, completed: false, isEditing: false }
+    ]);
+  }, []);
 
-    // Toggle Complete Todo
-    const toggleComplete = (id) => {
-        setTodos(
-            todos.map((todo)=> todo.id === id ? { ...todo, completed:!todo.completed} : todo)
-        )
-    }
+  const deleteTodo = useCallback((id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }, []);
 
-    // Edit Todo
-    const editTodo = (id) => {
-        setTodos(
-            todos.map((todo)=> todo.id === id ? {...todo, isEditing:!todo.isEditing}: todo)
-        )
-    }
+  const toggleComplete = useCallback((id) => {
+    updateTodos((todo) => todo.id === id ? { ...todo, completed: !todo.completed } : todo);
+  }, []);
 
-    // Edit Task Todo
-    const editTask = (task, id) => {
-        setTodos(
-            todos.map((todo)=> todo.id === id ? {...todo, task, isEditing:!todo.isEditing} : todo)
-        )
-    }
+  const editTodo = useCallback((id) => {
+    updateTodos((todo) => todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo);
+  }, []);
 
-    // console.log("todos", todos)
+  const editTask = useCallback((task, id) => {
+    updateTodos((todo) => todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo);
+  }, []);
+
   return (
     <div className="TodoWrapper">
-        <h1>Web Development Tasks!</h1>
-        <TodoForm addTodo={addTodo}/>
-
-        {/* Display Todos */}
-        {todos.map((todo)=> todo.isEditing ? (
-            <EditTodoForm editTodo={editTask} task={todo}/>
+      <h1>Web Development Tasks!</h1>
+      <TodoForm addTodo={addTodo} />
+      {todos.map((todo) =>
+        todo.isEditing ? (
+          <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
         ) : (
-            <Todo 
+          <Todo
             key={todo.id}
             task={todo}
             deleteTodo={deleteTodo}
             editTodo={editTodo}
             toggleComplete={toggleComplete}
-            />
+          />
         )
-    )}
+      )}
     </div>
-  )
+  );
 }
 
-export default TodoWrapper
+export default TodoWrapper;
